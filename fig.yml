@@ -1,0 +1,13 @@
+bitcoindData:
+  image: kylemanna/bitcoind
+  command: init
+bitcoind:
+  image: kylemanna/bitcoind
+  command: bitcoind -disablewallet -rpcallowip=* -testnet
+  expose:
+    - "18333"
+  volumes_from:
+    - bitcoindData
+
+
+# vi: set tabstop=2 expandtab :
