@@ -22,10 +22,12 @@ git clone https://github.com/dmp1ce/fig-counterparty.git
 fig up
 ```
 
+You might need to run `fig up` twice on the first start.  This is a bug that it doesn't initialize correctly on the first start.
+
 # Debugging
 
-To see the bitcoind debug log (testnet): `fig run --rm bitcoind tail -f /bitcoin/.bitcoin/testnet3/debug.log`
+To see the bitcoind debug log (testnet): `fig run --rm bitcoind shell tail -f /bitcoin/.bitcoin/testnet3/debug.log`
 
 To see the counterpartyd debug log (testnet): `fig run --rm counterpartyd shell tail -f /home/counterparty/.local/share/counterpartyd/counterpartyd.testnet.log`
 
-`CTRL-C` to exit.
+`CTRL-C` to exit debug log.
