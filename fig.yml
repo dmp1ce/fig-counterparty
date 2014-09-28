@@ -3,11 +3,23 @@ bitcoindData:
   command: init
 bitcoind:
   image: kylemanna/bitcoind
-  command: bitcoind -disablewallet -rpcallowip=* -testnet
+  command: bitcoind -disablewallet -rpcallowip=* -testnet -txindex -rpcpassword=password
   expose:
     - "18333"
+    - "18332"
   volumes_from:
     - bitcoindData
-
+counterpartydData:
+  image: dmp1ce/counterpartyd
+  command: init
+counterpartyd:
+  image: dmp1ce/counterpartyd
+  command: counterpartyd --testnet --backend-rpc-connect=$BITCOIND_1_PORT_18332_TCP_ADDR --backend-rpc-port=$BITCOIND_1_PORT_18332_TCP_PORT --backend-rpc-password=password --backend-rpc-user=bitcoinrpc --rpc-user=counterpartyrpc --rpc-password=password server
+  expose:
+    - "14000"
+  volumes_from:
+    - counterpartydData
+  links:
+    - bitcoind
 
 # vi: set tabstop=2 expandtab :
