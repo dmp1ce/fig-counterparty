@@ -19,6 +19,7 @@ tail -f ~/.local/share/counterpartyd/counterpartyd.testnet.log
 
 ```
 git clone https://github.com/dmp1ce/fig-counterparty.git
+cd fig-counterparty
 fig up
 ```
 
